@@ -2,3 +2,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./assets/fonts/JetBrainsMono-VariableFont_wght.ttf)
+      format("truetype");
+  }
+  @font-face {
+    font-family: "JetBrains Mono Italic", monospace;
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf)
+      format("truetype");
+  }
+  @font-face {
+    font-family: "JetBrains Mono Bold", monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(./assets/fonts/static/JetBrainsMono-Bold.ttf) format("truetype");
+  }
+  /* jetbrains bold italic */
+  @font-face {
+    font-family: "JetBrains Mono Bold Italic", monospace;
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url(./assets/fonts/static/JetBrainsMono-BoldItalic.ttf)
+      format("truetype");
+  }
+}
+
+.heading-large {
+  @apply font-jetbrains-bold font-bold;
+  font-size: 2rem;
+  line-height: 2.6875rem;
+}
+
+.heading-medium {
+  @apply font-jetbrains-bold font-bold;
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
+}
+
+.body {
+  @apply font-jetbrains-bold font-bold;
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+}
