@@ -18,6 +18,8 @@ module.exports = {
         red: "#F64A4A",
         orange: "#FB7C58",
         yellow: "#F8CD65",
+        "bg-a": "#14131B",
+        "bg-b": "#08070B",
       },
     },
   },

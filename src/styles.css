@@ -38,6 +38,10 @@
   }
 }
 
+* {
+  @apply font-jetbrains text-white;
+}
+
 .heading-large {
   @apply font-jetbrains-bold font-bold;
   font-size: 2rem;
