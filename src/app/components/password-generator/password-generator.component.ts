@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './password-generator.component.html',
-  styleUrl: './password-generator.component.css'
+  styleUrl: './password-generator.component.css',
 })
-export class PasswordGeneratorComponent {
-
-}
+export class PasswordGeneratorComponent {}

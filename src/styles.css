@@ -39,7 +39,11 @@
 }
 
 * {
-  @apply font-jetbrains text-white;
+  @apply font-jetbrains;
+}
+
+html {
+  @apply text-white;
 }
 
 .heading-large {
