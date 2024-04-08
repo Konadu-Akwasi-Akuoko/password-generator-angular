@@ -2,3 +2,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./assets/fonts/JetBrainsMono-VariableFont_wght.ttf)
+      format("truetype");
+  }
+  @font-face {
+    font-family: "JetBrains Mono Italic", monospace;
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf)
+      format("truetype");
+  }
+  @font-face {
+    font-family: "JetBrains Mono Bold", monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(./assets/fonts/static/JetBrainsMono-Bold.ttf) format("truetype");
+  }
+  /* jetbrains bold italic */
+  @font-face {
+    font-family: "JetBrains Mono Bold Italic", monospace;
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url(./assets/fonts/static/JetBrainsMono-BoldItalic.ttf)
+      format("truetype");
+  }
+}
