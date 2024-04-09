@@ -37,7 +37,7 @@ describe('StrengthCheckerComponent', () => {
 
   it('should have four strength indicators', () => {
     const strengthIndicators = fixture.debugElement.queryAll(
-      By.css('.h-7')
+      By.css('div.h-7')
     );
     expect(strengthIndicators.length).toBe(4);
   });
