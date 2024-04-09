@@ -1,0 +1,27 @@
+<div class="flex flex-row items-center gap-x-6 relative">
+  <input
+    #checkbox
+    type="checkbox"
+    [name]="props.name"
+    [id]="props.name"
+    [checked]="props.value"
+    class="appearance-none peer cursor-pointer w-5 h-5 border-2 border-almost-white checked:bg-neon-green checked:border-neon-green"
+  />
+  <svg
+    width="14"
+    height="12"
+    xmlns="http://www.w3.org/2000/svg"
+    class="absolute top-[6px] left-1 cursor-pointer hidden peer-checked:block"
+    (click)="checkbox.click()"
+  >
+    <path
+      stroke="#18171F"
+      stroke-width="3"
+      fill="none"
+      d="M1 5.607 4.393 9l8-8"
+    />
+  </svg>
+  <label [htmlFor]="props.name" class="cursor-pointer">
+    {{ props.label }}
+  </label>
+</div>
