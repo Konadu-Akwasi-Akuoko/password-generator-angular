@@ -16,14 +16,14 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.passwordGeneratorService.passwordLength.subscribe((value) => {
+    this.passwordGeneratorService.passwordLength$.subscribe((value) => {
       this.sliderValue = value;
     });
     this.passwordGeneratorService.setPasswordLength(10);
   }
 
   ngOnDestroy(): void {
-    this.passwordGeneratorService.passwordLength.unsubscribe();
+    this.passwordGeneratorService.passwordLength$.unsubscribe();
   }
 
   updateSliderValue(event: Event): void {

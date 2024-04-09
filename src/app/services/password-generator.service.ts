@@ -5,39 +5,39 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class PasswordGeneratorService {
-  includeUpperCase: Subject<boolean>;
-  includeLowerCase: Subject<boolean>;
-  includeNumbers: Subject<boolean>;
-  includeSymbols: Subject<boolean>;
-  passwordLength: Subject<number>;
-  generatedPassword: Subject<string>;
+  includeUpperCase$: Subject<boolean>;
+  includeLowerCase$: Subject<boolean>;
+  includeNumbers$: Subject<boolean>;
+  includeSymbols$: Subject<boolean>;
+  passwordLength$: Subject<number>;
+  generatedPassword$: Subject<string>;
 
   constructor() {
-    this.includeUpperCase = new Subject();
-    this.includeLowerCase = new Subject();
-    this.includeNumbers = new Subject();
-    this.includeSymbols = new Subject();
-    this.passwordLength = new Subject();
-    this.generatedPassword = new Subject();
+    this.includeUpperCase$ = new Subject();
+    this.includeLowerCase$ = new Subject();
+    this.includeNumbers$ = new Subject();
+    this.includeSymbols$ = new Subject();
+    this.passwordLength$ = new Subject();
+    this.generatedPassword$ = new Subject();
   }
 
   setIncludeUpperCase(value: boolean) {
-    this.includeUpperCase.next(value);
+    this.includeUpperCase$.next(value);
   }
 
   setIncludeLowerCase(value: boolean) {
-    this.includeLowerCase.next(value);
+    this.includeLowerCase$.next(value);
   }
 
   setIncludeNumbers(value: boolean) {
-    this.includeNumbers.next(value);
+    this.includeNumbers$.next(value);
   }
 
   setIncludeSymbols(value: boolean) {
-    this.includeSymbols.next(value);
+    this.includeSymbols$.next(value);
   }
 
   setPasswordLength(value: number) {
-    this.passwordLength.next(value);
+    this.passwordLength$.next(value);
   }
 }
