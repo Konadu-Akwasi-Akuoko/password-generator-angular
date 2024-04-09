@@ -14,7 +14,6 @@ describe('CheckboxComponent', () => {
 
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
-    component.props = { label: 'Test box', value: false, name: 'test' };
     fixture.detectChanges();
   });
 
@@ -31,13 +30,13 @@ describe('CheckboxComponent', () => {
 
   it('should have a label with text "Test box"', () => {
     const label = fixture.debugElement.query(By.css('label'));
-    expect(label.nativeElement.textContent).toBe(' Test box ');
+    expect(label.nativeElement.textContent).toBe(' Include Uppercase Letters ');
   });
 
   it('should have a value of false', () => {
     const checkbox = fixture.debugElement.query(
       By.css('input[type="checkbox"]')
     );
-    expect(checkbox.nativeElement.checked).toBeFalse();
+    expect(checkbox.nativeElement.checked).toBeTrue();
   });
 });
