@@ -20,4 +20,24 @@ export class PasswordGeneratorService {
     this.passwordLength = new Subject();
     this.generatedPassword = new Subject();
   }
+
+  setIncludeUpperCase(value: boolean) {
+    this.includeUpperCase.next(value);
+  }
+
+  setIncludeLowerCase(value: boolean) {
+    this.includeLowerCase.next(value);
+  }
+
+  setIncludeNumbers(value: boolean) {
+    this.includeNumbers.next(value);
+  }
+
+  setIncludeSymbols(value: boolean) {
+    this.includeSymbols.next(value);
+  }
+
+  setPasswordLength(value: number) {
+    this.passwordLength.next(value);
+  }
 }
