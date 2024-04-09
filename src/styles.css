@@ -39,7 +39,7 @@
 }
 
 * {
-  @apply font-jetbrains;
+  @apply font-jetbrains transition-all duration-75;
 }
 
 html {
