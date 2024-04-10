@@ -59,6 +59,4 @@ describe('PasswordGeneratorComponent', () => {
 
     expect(component.onPasswordCopied).toBeFalse();
   }));
-
-  
 });
