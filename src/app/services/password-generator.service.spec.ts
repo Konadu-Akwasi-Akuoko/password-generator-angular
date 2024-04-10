@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { PasswordGeneratorService } from './password-generator.service';
+import { skip } from 'rxjs';
 
 describe('PasswordGeneratorService', () => {
   let service: PasswordGeneratorService;
@@ -14,7 +15,7 @@ describe('PasswordGeneratorService', () => {
   });
 
   it('should set includeUpperCase$', (done) => {
-    service.includeUpperCase$.subscribe((value) => {
+    service.includeUpperCase$.pipe(skip(1)).subscribe((value) => {
       expect(value).toBeTrue();
       done();
     });
@@ -22,7 +23,7 @@ describe('PasswordGeneratorService', () => {
   });
 
   it('should set includeLowerCase$', (done) => {
-    service.includeLowerCase$.subscribe((value) => {
+    service.includeLowerCase$.pipe(skip(1)).subscribe((value) => {
       expect(value).toBeTrue();
       done();
     });
@@ -30,7 +31,7 @@ describe('PasswordGeneratorService', () => {
   });
 
   it('should set includeNumbers$', (done) => {
-    service.includeNumbers$.subscribe((value) => {
+    service.includeNumbers$.pipe(skip(1)).subscribe((value) => {
       expect(value).toBeTrue();
       done();
     });
@@ -38,7 +39,7 @@ describe('PasswordGeneratorService', () => {
   });
 
   it('should set includeSymbols$', (done) => {
-    service.includeSymbols$.subscribe((value) => {
+    service.includeSymbols$.pipe(skip(1)).subscribe((value) => {
       expect(value).toBeTrue();
       done();
     });
@@ -46,7 +47,7 @@ describe('PasswordGeneratorService', () => {
   });
 
   it('should set passwordLength$', (done) => {
-    service.passwordLength$.subscribe((value) => {
+    service.passwordLength$.pipe(skip(1)).subscribe((value) => {
       expect(value).toEqual(10);
       done();
     });
