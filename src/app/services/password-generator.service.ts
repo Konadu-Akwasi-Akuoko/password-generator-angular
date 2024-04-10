@@ -1,41 +1,34 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, retry, Subscription } from 'rxjs';
+import zxcvbn from 'zxcvbn';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PasswordGeneratorService implements OnDestroy {
+export class PasswordGeneratorService {
   includeUpperCase$ = new BehaviorSubject<boolean>(false);
   includeLowerCase$ = new BehaviorSubject<boolean>(false);
   includeNumbers$ = new BehaviorSubject<boolean>(false);
   includeSymbols$ = new BehaviorSubject<boolean>(false);
   passwordLength$ = new BehaviorSubject<number>(0);
   generatedPassword$ = new BehaviorSubject<string>('');
+  passwordStrength$ = new BehaviorSubject<number>(0);
 
   private lowercaseChars: string;
   private uppercaseChars: string;
   private numbersChars: string;
   private symbolsChars: string;
 
-  private subscriptions: Subscription[] = [];
-
   constructor() {
-    this.subscriptions.push(
-      this.includeUpperCase$.subscribe(),
-      this.includeLowerCase$.subscribe(),
-      this.includeNumbers$.subscribe(),
-      this.includeSymbols$.subscribe(),
-      this.passwordLength$.subscribe()
-    );
-
     this.lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
     this.uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     this.numbersChars = '0123456789';
     this.symbolsChars = `!@#$%^&*()_+-=[]{}|;:,.<>?"'`;
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  checkPasswordStrength(password: string) {
+    const strength = zxcvbn(password);
+    return strength.score === 0 ? 1 : strength.score;
   }
 
   private getRandomByte() {
@@ -84,11 +77,23 @@ export class PasswordGeneratorService implements OnDestroy {
     }
 
     while (password.length < this.passwordLength$.value) {
-      let char = String.fromCharCode(this.getRandomByte());
-      do {
-        char = String.fromCharCode(this.getRandomByte());
-      } while (password.includes(char) || charSet.indexOf(char) === -1);
-      password += char;
+      if (
+        this.includeNumbers$.value &&
+        !this.includeLowerCase$.value &&
+        !this.includeUpperCase$.value &&
+        !this.includeSymbols$.value
+      ) {
+        const char = String.fromCharCode(this.getRandomByte());
+        if (charSet.indexOf(char) !== -1) {
+          password += char;
+        }
+      } else {
+        let char = String.fromCharCode(this.getRandomByte());
+        do {
+          char = String.fromCharCode(this.getRandomByte());
+        } while (password.includes(char) || charSet.indexOf(char) === -1);
+        password += char;
+      }
     }
 
     password = password
@@ -96,6 +101,8 @@ export class PasswordGeneratorService implements OnDestroy {
       .sort(() => 0.5 - Math.random())
       .slice(0, this.passwordLength$.value)
       .join('');
+
+    this.checkPasswordStrength(password);
 
     this.generatedPassword$.next(password);
   }
