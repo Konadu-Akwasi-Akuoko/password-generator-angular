@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 
 import { PasswordGeneratorComponent } from './password-generator.component';
 import { By } from '@angular/platform-browser';
@@ -41,5 +46,19 @@ describe('PasswordGeneratorComponent', () => {
     expect(copyButton).toBeTruthy();
   });
 
-   
+  it('should copy the password to the clipboard and set onPasswordCopied to true, then false after 2 seconds', fakeAsync(() => {
+    spyOn(navigator.clipboard, 'writeText');
+    component.generatedPassword = 'test-password';
+
+    component.onCopyButtonClicked();
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('test-password');
+    expect(component.onPasswordCopied).toBeTrue();
+
+    tick(2000);
+
+    expect(component.onPasswordCopied).toBeFalse();
+  }));
+
+  
 });
