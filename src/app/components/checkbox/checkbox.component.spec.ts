@@ -21,22 +21,33 @@ describe('CheckboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a checkbox input', () => {
-    const checkbox = fixture.debugElement.query(
+  it('should have 4 checkboxes', () => {
+    const checkboxes = fixture.debugElement.queryAll(
       By.css('input[type="checkbox"]')
     );
-    expect(checkbox).toBeTruthy();
+    expect(checkboxes.length).toBe(4);
   });
 
-  it('should have a label with text "Test box"', () => {
-    const label = fixture.debugElement.query(By.css('label'));
-    expect(label.nativeElement.textContent).toBe(' Include Uppercase Letters ');
-  });
-
-  it('should have a value of false', () => {
-    const checkbox = fixture.debugElement.query(
+  it('checkboxes should have correct values', () => {
+    const checkboxes = fixture.debugElement.queryAll(
       By.css('input[type="checkbox"]')
     );
-    expect(checkbox.nativeElement.checked).toBeTrue();
+    checkboxes.forEach((checkbox, index) => {
+      expect(checkbox.nativeElement.checked).toBe(component.props[index].value);
+    });
+  });
+
+  it('should have 4 labels', () => {
+    const labels = fixture.debugElement.queryAll(By.css('label'));
+    expect(labels.length).toBe(4);
+  });
+
+  it('labels should have correct text', () => {
+    const labels = fixture.debugElement.queryAll(By.css('label'));
+    labels.forEach((label, index) => {
+      expect(label.nativeElement.textContent.trim()).toBe(
+        component.props[index].label
+      );
+    });
   });
 });

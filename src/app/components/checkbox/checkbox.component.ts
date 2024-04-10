@@ -1,7 +1,6 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { PasswordGeneratorService } from '../../services/password-generator.service';
-import { Subject } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PasswordGeneratorService } from '../../services/password-generator.service';
 
 @Component({
   selector: 'app-checkbox',
