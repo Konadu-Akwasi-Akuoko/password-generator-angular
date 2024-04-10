@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, retry, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +53,14 @@ export class PasswordGeneratorService implements OnDestroy {
   generatePassword() {
     let charSet = '';
     let password = '';
+
+    if (
+      !this.includeUpperCase$.value &&
+      !this.includeLowerCase$.value &&
+      !this.includeNumbers$.value &&
+      !this.includeSymbols$.value
+    )
+      return;
 
     if (this.includeUpperCase$.value) {
       charSet += this.uppercaseChars;
