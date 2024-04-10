@@ -53,4 +53,77 @@ describe('PasswordGeneratorService', () => {
     });
     service.setPasswordLength(10);
   });
+
+  it('should generate a password of the correct length', () => {
+    service.setPasswordLength(10);
+    service.setIncludeLowerCase(true);
+    service.setIncludeUpperCase(true);
+    service.setIncludeNumbers(true);
+    service.setIncludeSymbols(true);
+    service.generatePassword();
+    expect(service.generatedPassword$.value.length).toEqual(10);
+  });
+
+  it('should include uppercase characters when includeUpperCase$ is true', () => {
+    service.setPasswordLength(10);
+    service.setIncludeUpperCase(true);
+    service.setIncludeLowerCase(false);
+    service.setIncludeNumbers(false);
+    service.setIncludeSymbols(false);
+    service.generatePassword();
+    expect(service.generatedPassword$.value).toMatch(/[A-Z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[a-z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[0-9]/);
+    expect(service.generatedPassword$.value).not.toMatch(
+      /[!@#\$%\^&*\(\)_\+\-=\[\]{}|;:,.<>?"]/
+    );
+  });
+
+  // should include lowercase characters when includeLowerCase$ is true
+  it('should include lowercase characters when includeLowerCase$ is true', () => {
+    service.setPasswordLength(10);
+    service.setIncludeUpperCase(false);
+    service.setIncludeLowerCase(true);
+    service.setIncludeNumbers(false);
+    service.setIncludeSymbols(false);
+    service.generatePassword();
+    expect(service.generatedPassword$.value).toMatch(/[a-z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[A-Z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[0-9]/);
+    expect(service.generatedPassword$.value).not.toMatch(
+      /[!@#\$%\^&*\(\)_\+\-=\[\]{}|;:,.<>?"]/
+    );
+  });
+
+  // should include numbers when includeNumbers$ is true
+  it('should include numbers when includeNumbers$ is true', () => {
+    service.setPasswordLength(10);
+    service.setIncludeUpperCase(false);
+    service.setIncludeLowerCase(false);
+    service.setIncludeNumbers(true);
+    service.setIncludeSymbols(false);
+    service.generatePassword();
+    expect(service.generatedPassword$.value).toMatch(/[0-9]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[A-Z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[a-z]/);
+    expect(service.generatedPassword$.value).not.toMatch(
+      /[!@#\$%\^&*\(\)_\+\-=\[\]{}|;:,.<>?"]/
+    );
+  });
+
+  // should include symbols when includeSymbols$ is true
+  it('should include symbols when includeSymbols$ is true', () => {
+    service.setPasswordLength(10);
+    service.setIncludeUpperCase(false);
+    service.setIncludeLowerCase(false);
+    service.setIncludeNumbers(false);
+    service.setIncludeSymbols(true);
+    service.generatePassword();
+    expect(service.generatedPassword$.value).toMatch(
+      /[!@#\$%\^&*\(\)_\+\-=\[\]{}|;:,.<>?"]/
+    );
+    expect(service.generatedPassword$.value).not.toMatch(/[A-Z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[a-z]/);
+    expect(service.generatedPassword$.value).not.toMatch(/[0-9]/);
+  });
 });
