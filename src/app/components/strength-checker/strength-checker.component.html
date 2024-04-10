@@ -3,6 +3,23 @@
 >
   <p class="body text-grey">{{ "STRENGTH" | uppercase }}</p>
   <div class="flex flex-row gap-4">
+    @switch (passwordStrength) { @case (1) {
+    <p class="heading-medium">{{ "TOO WEAK" | uppercase }}</p>
+    <div class="flex flex-row gap-2">
+      <div class="w-[10px] h-7 bg-red"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+    </div>
+    } @case (2) {
+    <p class="heading-medium">{{ "WEAK" | uppercase }}</p>
+    <div class="flex flex-row gap-2">
+      <div class="w-[10px] h-7 bg-orange"></div>
+      <div class="w-[10px] h-7 bg-orange"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+    </div>
+    } @case (3) {
     <p class="heading-medium">{{ "MEDIUM" | uppercase }}</p>
     <div class="flex flex-row gap-2">
       <div class="w-[10px] h-7 bg-yellow"></div>
@@ -10,5 +27,21 @@
       <div class="w-[10px] h-7 bg-yellow"></div>
       <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
     </div>
+    } @case (4) {
+    <p class="heading-medium">{{ "STRONG" | uppercase }}</p>
+    <div class="flex flex-row gap-2">
+      <div class="w-[10px] h-7 bg-neon-green"></div>
+      <div class="w-[10px] h-7 bg-neon-green"></div>
+      <div class="w-[10px] h-7 bg-neon-green"></div>
+      <div class="w-[10px] h-7 bg-neon-green"></div>
+    </div>
+    } @default {
+    <div class="flex flex-row gap-2">
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+      <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
+    </div>
+    }}
   </div>
 </div>

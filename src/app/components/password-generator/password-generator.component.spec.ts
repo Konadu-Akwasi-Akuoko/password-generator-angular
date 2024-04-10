@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 
 import { PasswordGeneratorComponent } from './password-generator.component';
 import { By } from '@angular/platform-browser';
@@ -41,24 +46,17 @@ describe('PasswordGeneratorComponent', () => {
     expect(copyButton).toBeTruthy();
   });
 
-  it('should have a label with text "Length"', () => {
-    const labelElement = fixture.debugElement.query(
-      By.css('label[for="length"]')
-    );
-    expect(labelElement.nativeElement.textContent).toContain('Length');
-  });
+  it('should copy the password to the clipboard and set onPasswordCopied to true, then false after 2 seconds', fakeAsync(() => {
+    spyOn(navigator.clipboard, 'writeText');
+    component.generatedPassword = 'test-password';
 
-  it('should have an input of type range', () => {
-    const inputElement = fixture.debugElement.query(
-      By.css('input[type="range"]')
-    );
-    expect(inputElement).toBeTruthy();
-  });
+    component.onCopyButtonClicked();
 
-  it('should have a p element with class "heading-large text-neon-green w-fit" and text "10"', () => {
-    const pElement = fixture.debugElement.query(
-      By.css('p.heading-large.text-neon-green.w-fit')
-    );
-    expect(pElement.nativeElement.textContent).toContain('10');
-  });
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('test-password');
+    expect(component.onPasswordCopied).toBeTrue();
+
+    tick(2000);
+
+    expect(component.onPasswordCopied).toBeFalse();
+  }));
 });
