@@ -52,13 +52,28 @@ export class PasswordGeneratorService implements OnDestroy {
 
   generatePassword() {
     let charSet = '';
-
-    if (this.includeUpperCase$.value) charSet += this.uppercaseChars;
-    if (this.includeLowerCase$.value) charSet += this.lowercaseChars;
-    if (this.includeNumbers$.value) charSet += this.numbersChars;
-    if (this.includeSymbols$.value) charSet += this.symbolsChars;
-
     let password = '';
+
+    if (this.includeUpperCase$.value) {
+      charSet += this.uppercaseChars;
+      password +=
+        this.uppercaseChars[this.getRandomByte() % this.uppercaseChars.length];
+    }
+    if (this.includeLowerCase$.value) {
+      charSet += this.lowercaseChars;
+      password +=
+        this.lowercaseChars[this.getRandomByte() % this.lowercaseChars.length];
+    }
+    if (this.includeNumbers$.value) {
+      charSet += this.numbersChars;
+      password +=
+        this.numbersChars[this.getRandomByte() % this.numbersChars.length];
+    }
+    if (this.includeSymbols$.value) {
+      charSet += this.symbolsChars;
+      password +=
+        this.symbolsChars[this.getRandomByte() % this.symbolsChars.length];
+    }
 
     while (password.length < this.passwordLength$.value) {
       const char = String.fromCharCode(this.getRandomByte());
@@ -66,6 +81,11 @@ export class PasswordGeneratorService implements OnDestroy {
         password += char;
       }
     }
+
+    password = password
+      .split('')
+      .sort(() => 0.5 - Math.random())
+      .join('');
 
     this.generatedPassword$.next(password);
   }
