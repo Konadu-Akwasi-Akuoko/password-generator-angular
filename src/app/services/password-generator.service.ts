@@ -12,7 +12,7 @@ export class PasswordGeneratorService {
   includeSymbols$ = new BehaviorSubject<boolean>(false);
   passwordLength$ = new BehaviorSubject<number>(0);
   generatedPassword$ = new BehaviorSubject<string>('');
-  passwordStrength$ = new BehaviorSubject<number>(0);
+  passwordStrength$ = new BehaviorSubject<number>(1);
 
   private lowercaseChars: string;
   private uppercaseChars: string;
@@ -27,8 +27,11 @@ export class PasswordGeneratorService {
   }
 
   checkPasswordStrength(password: string) {
-    const strength = zxcvbn(password);
-    return strength.score === 0 ? 1 : strength.score;
+    const passwordCheckResult = zxcvbn(password);
+    const strength = Number(
+      passwordCheckResult.score === 0 ? 1 : passwordCheckResult.score
+    );
+    this.passwordStrength$.next(strength);
   }
 
   private getRandomByte() {
