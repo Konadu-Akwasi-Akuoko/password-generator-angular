@@ -1,11 +1,10 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PasswordGeneratorService } from '../../services/password-generator.service';
 
 @Component({
   selector: 'app-checkbox',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.css',
 })
