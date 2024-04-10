@@ -76,15 +76,17 @@ export class PasswordGeneratorService implements OnDestroy {
     }
 
     while (password.length < this.passwordLength$.value) {
-      const char = String.fromCharCode(this.getRandomByte());
-      if (charSet.indexOf(char) !== -1) {
-        password += char;
-      }
+      let char = String.fromCharCode(this.getRandomByte());
+      do {
+        char = String.fromCharCode(this.getRandomByte());
+      } while (password.includes(char) || charSet.indexOf(char) === -1);
+      password += char;
     }
 
     password = password
       .split('')
       .sort(() => 0.5 - Math.random())
+      .slice(0, this.passwordLength$.value)
       .join('');
 
     this.generatedPassword$.next(password);
