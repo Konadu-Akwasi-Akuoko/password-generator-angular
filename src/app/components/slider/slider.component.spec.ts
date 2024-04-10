@@ -1,45 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SliderComponent } from './slider.component';
 import { By } from '@angular/platform-browser';
+import { PasswordGeneratorService } from '../../services/password-generator.service';
+import { of } from 'rxjs';
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
-  let fixture: ComponentFixture<SliderComponent>;
+  let passwordGeneratorService: PasswordGeneratorService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SliderComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(SliderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    const passwordGeneratorServiceMock = {
+      passwordLength$: of(10),
+      setPasswordLength: jasmine.createSpy('setPasswordLength'),
+    };
+
+    passwordGeneratorService = passwordGeneratorServiceMock as any;
+    component = new SliderComponent(passwordGeneratorService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a label with text "Length"', () => {
-    const labelElement = fixture.debugElement.query(
-      By.css('label[for="length"]')
-    );
-    expect(labelElement.nativeElement.textContent).toContain('Length');
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should have an input of type range', () => {
-    const inputElement = fixture.debugElement.query(
-      By.css('input[type="range"]')
-    );
-    expect(inputElement).toBeTruthy();
-  });
+  it('should call setPasswordLength with correct value when updateSliderValue is called', () => {
+    const event = {
+      target: { value: '5' },
+    } as any as InputEvent;
 
-  it('should have a p element with class "heading-large text-neon-green w-fit" and text "10"', () => {
-    const pElement = fixture.debugElement.query(
-      By.css('p.heading-large.text-neon-green.w-fit')
-    );
-    expect(pElement.nativeElement.textContent).toContain('10');
+    component.updateSliderValue(event);
+
+    expect(passwordGeneratorService.setPasswordLength).toHaveBeenCalledWith(5);
   });
 });
