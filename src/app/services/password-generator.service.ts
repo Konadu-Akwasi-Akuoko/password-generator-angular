@@ -26,6 +26,24 @@ export class PasswordGeneratorService {
     this.symbolsChars = `!@#$%^&*()_+-=[]{}|;:,.<>?"'`;
   }
 
+  emptyState() {
+    if (
+      !this.includeLowerCase$.value &&
+      !this.includeUpperCase$.value &&
+      !this.includeNumbers$.value &&
+      !this.includeSymbols$.value &&
+      !this.passwordLength$.value
+    ) {
+      this.includeUpperCase$.next(false);
+      this.includeLowerCase$.next(false);
+      this.includeNumbers$.next(false);
+      this.includeSymbols$.next(false);
+      this.passwordLength$.next(0);
+      this.generatedPassword$.next('');
+      this.passwordStrength$.next(0);
+    } else return;
+  }
+
   checkPasswordStrength(password: string) {
     const passwordCheckResult = zxcvbn(password);
     const strength = Number(
@@ -112,21 +130,26 @@ export class PasswordGeneratorService {
 
   setIncludeUpperCase(value: boolean) {
     this.includeUpperCase$.next(value);
-  }
-
-  setIncludeLowerCase(value: boolean) {
-    this.includeLowerCase$.next(value);
+    this.emptyState();
   }
 
   setIncludeNumbers(value: boolean) {
     this.includeNumbers$.next(value);
+    this.emptyState();
   }
 
   setIncludeSymbols(value: boolean) {
     this.includeSymbols$.next(value);
+    this.emptyState();
   }
 
   setPasswordLength(value: number) {
     this.passwordLength$.next(value);
+    this.emptyState();
+  }
+
+  setIncludeLowerCase(value: boolean) {
+    this.includeLowerCase$.next(value);
+    this.emptyState();
   }
 }
