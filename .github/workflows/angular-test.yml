@@ -4,11 +4,9 @@
 name: Angular testing and build
 on:
   push:
-    branches-ignore:
-      - gh-pages
-  pull_request:
-    branches-ignore:
-      - gh-pages
+    branches:
+      - "!" # Matches everything (excluding the next patterns)
+      - "!g*" # Excludes branches starting with "g" (and any characters after)
 
 jobs:
   test:
