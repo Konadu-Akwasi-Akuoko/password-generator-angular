@@ -54,6 +54,19 @@ describe('PasswordGeneratorService', () => {
     service.setPasswordLength(10);
   });
 
+  it('should not throw an error if window.crypto.getRandomValues is available', () => {
+    const originalGetRandomValues = window.crypto.getRandomValues;
+    try {
+      window.crypto.getRandomValues = jasmine
+        .createSpy()
+        .and.returnValue(new Uint8Array([123]));
+
+      expect(() => service['getRandomByte']).not.toThrow();
+    } finally {
+      window.crypto.getRandomValues = originalGetRandomValues;
+    }
+  });
+
   it('should generate a password of the correct length', () => {
     service.setPasswordLength(10);
     service.setIncludeLowerCase(true);
@@ -79,7 +92,6 @@ describe('PasswordGeneratorService', () => {
     );
   });
 
-  // should include lowercase characters when includeLowerCase$ is true
   it('should include lowercase characters when includeLowerCase$ is true', () => {
     service.setPasswordLength(10);
     service.setIncludeUpperCase(false);
@@ -95,7 +107,6 @@ describe('PasswordGeneratorService', () => {
     );
   });
 
-  // should include numbers when includeNumbers$ is true
   it('should include numbers when includeNumbers$ is true', () => {
     service.setPasswordLength(10);
     service.setIncludeUpperCase(false);
@@ -111,7 +122,6 @@ describe('PasswordGeneratorService', () => {
     );
   });
 
-  // should include symbols when includeSymbols$ is true
   it('should include symbols when includeSymbols$ is true', () => {
     service.setPasswordLength(10);
     service.setIncludeUpperCase(false);
@@ -125,5 +135,14 @@ describe('PasswordGeneratorService', () => {
     expect(service.generatedPassword$.value).not.toMatch(/[A-Z]/);
     expect(service.generatedPassword$.value).not.toMatch(/[a-z]/);
     expect(service.generatedPassword$.value).not.toMatch(/[0-9]/);
+  });
+
+  it('should not generate a password if all character types are set to false', () => {
+    service.setIncludeUpperCase(false);
+    service.setIncludeLowerCase(false);
+    service.setIncludeNumbers(false);
+    service.setIncludeSymbols(false);
+    service.generatePassword();
+    expect(service.generatedPassword$.value).toEqual('');
   });
 });
