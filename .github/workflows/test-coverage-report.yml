@@ -1,10 +1,9 @@
 name: Create a test coverage report
 on:
   push:
-    branches:
-      - "*"
-      - "*/*"
-      - "**"
+    branches-ignore:
+      - "gh-pages"
+
 jobs:
   test:
     runs-on: ubuntu-latest
