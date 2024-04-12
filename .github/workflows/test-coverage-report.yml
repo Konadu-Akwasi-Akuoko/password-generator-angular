@@ -2,14 +2,14 @@ name: Create a test coverage report
 on:
   push:
     branches-ignore:
-      - "gh-pages"
+      - gh-pages
   pull_request:
     branches-ignore:
-      - "gh-pages"
+      - gh-pages
 
 jobs:
   test:
-    if: github.ref != 'refs/heads/gh-pages'
+    if: github.ref != 'refs/heads/gh-pages' && github.event_name != 'push'
     runs-on: ubuntu-latest
     name: Generate and deploy coverage report
 
