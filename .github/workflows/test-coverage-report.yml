@@ -25,6 +25,9 @@ jobs:
       - name: pnpm-test-angular
         run: pnpm run test:ci
 
+      - name: List coverage directory
+        run: ls -R coverage
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
