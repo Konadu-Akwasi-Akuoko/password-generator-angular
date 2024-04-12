@@ -30,9 +30,8 @@ jobs:
       - name: List coverage directory
         run: ls -R coverage
 
-      - name: Deploy coverage report 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: gh-pages
-          folder: coverage/password-generator
-          token: ${{ secrets.GH_PAT }}
+      - name: remove old coverage report from ./docs
+        run: rm -rf ./docs/*
+
+      - name: copy new coverage report to ./docs
+        run: cp -r ./coverage/password-generator/* ./docs
