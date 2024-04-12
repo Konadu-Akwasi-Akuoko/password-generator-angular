@@ -30,9 +30,9 @@ describe('StrengthCheckerComponent', () => {
 
   it('should have a subtitle "MEDIUM"', () => {
     const subtitleElement = fixture.debugElement.query(
-      By.css('.heading-medium')
+      By.css('p.text-base')
     ).nativeElement;
-    expect(subtitleElement.textContent).toBe('MEDIUM');
+    expect(subtitleElement.textContent).toBe(' MEDIUM ');
   });
 
   it('should have four strength indicators', () => {
