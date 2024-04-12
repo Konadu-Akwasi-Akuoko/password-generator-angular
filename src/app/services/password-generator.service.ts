@@ -14,7 +14,7 @@ export class PasswordGeneratorService {
   includeSymbols$ = new BehaviorSubject<boolean>(false);
   passwordLength$ = new BehaviorSubject<number>(0);
   generatedPassword$ = new BehaviorSubject<string>('');
-  passwordStrength$ = new BehaviorSubject<number>(1);
+  passwordStrength$ = new BehaviorSubject<number>(3);
 
   private lowercaseChars: string;
   private uppercaseChars: string;
