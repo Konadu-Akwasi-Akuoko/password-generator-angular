@@ -28,26 +28,7 @@ jobs:
       - name: List coverage directory
         run: ls -R coverage
 
-      - name: Archive coverage directory
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage
-          path: coverage/password-generator
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
-      - name: Download coverage directory
-        uses: actions/download-artifact@v2
-        with:
-          name: coverage
-          path: coverage/password-generator
-
-      - name: Deploy 🚀
+      - name: Deploy coverage report 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
