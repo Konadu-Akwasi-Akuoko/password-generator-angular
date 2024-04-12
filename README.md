@@ -1,4 +1,6 @@
-# PasswordGenerator
+# PasswordGenerator Using Angular
+
+[![Angular testing and build](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml/badge.svg)](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
 
