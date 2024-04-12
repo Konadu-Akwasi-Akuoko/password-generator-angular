@@ -5,12 +5,13 @@ name: Angular testing and build
 on:
   push:
     branches:
-      - "!" # Matches everything (excluding the next patterns)
-      - "!g*" # Excludes branches starting with "g" (and any characters after)
+      - "*"
+      - "*/*"
+      - "**"
+      - "!gh-pages"
 
 jobs:
   test:
-    if: github.ref != 'refs/heads/gh-pages' || github.event_name != 'push'
     runs-on: ubuntu-latest
     name: Test code
 

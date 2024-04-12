@@ -2,8 +2,10 @@ name: Create a test coverage report
 on:
   push:
     branches:
-      - "!" # Matches everything (excluding the next patterns)
-      - "!g*" # Excludes branches starting with "g" (and any characters after)
+      - "*"
+      - "*/*"
+      - "**"
+      - "!gh-pages"
 
 jobs:
   test:
