@@ -9,7 +9,7 @@
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Credits](#credits)
-6. [CI/CD](#ci/cd)
+6. [CI/CD](#cicd)
 7. [Contributing](#contributing)
 8. [Testing](#testing)
 9. [License](#license)
