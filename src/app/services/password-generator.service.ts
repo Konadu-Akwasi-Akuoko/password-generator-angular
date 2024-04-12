@@ -1,6 +1,8 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, retry, Subscription } from 'rxjs';
-import zxcvbn from 'zxcvbn';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
+import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
+import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 
 @Injectable({
   providedIn: 'root',
@@ -26,25 +28,17 @@ export class PasswordGeneratorService {
     this.symbolsChars = `!@#$%^&*()_+-=[]{}|;:,.<>?"'`;
   }
 
-  emptyState() {
-    if (
-      !this.includeLowerCase$.value &&
-      !this.includeUpperCase$.value &&
-      !this.includeNumbers$.value &&
-      !this.includeSymbols$.value &&
-      !this.passwordLength$.value
-    ) {
-      this.includeUpperCase$.next(false);
-      this.includeLowerCase$.next(false);
-      this.includeNumbers$.next(false);
-      this.includeSymbols$.next(false);
-      this.passwordLength$.next(0);
-      this.generatedPassword$.next('');
-      this.passwordStrength$.next(0);
-    } else return;
-  }
+  private checkPasswordStrength(password: string) {
+    const options = {
+      translations: zxcvbnEnPackage.translations,
+      graphs: zxcvbnCommonPackage.adjacencyGraphs,
+      dictionary: {
+        ...zxcvbnCommonPackage.dictionary,
+        ...zxcvbnEnPackage.dictionary,
+      },
+    };
+    zxcvbnOptions.setOptions(options);
 
-  checkPasswordStrength(password: string) {
     const passwordCheckResult = zxcvbn(password);
     const strength = Number(
       passwordCheckResult.score === 0 ? 1 : passwordCheckResult.score
@@ -126,6 +120,24 @@ export class PasswordGeneratorService {
     this.checkPasswordStrength(password);
 
     this.generatedPassword$.next(password);
+  }
+
+  private emptyState() {
+    if (
+      !this.includeLowerCase$.value &&
+      !this.includeUpperCase$.value &&
+      !this.includeNumbers$.value &&
+      !this.includeSymbols$.value &&
+      !this.passwordLength$.value
+    ) {
+      this.includeUpperCase$.next(false);
+      this.includeLowerCase$.next(false);
+      this.includeNumbers$.next(false);
+      this.includeSymbols$.next(false);
+      this.passwordLength$.next(0);
+      this.generatedPassword$.next('');
+      this.passwordStrength$.next(0);
+    } else return;
   }
 
   setIncludeUpperCase(value: boolean) {
