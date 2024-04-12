@@ -6,9 +6,13 @@ on:
   push:
     branches-ignore:
       - "gh-pages"
+  pull_request:
+    branches-ignore:
+      - "gh-pages"
 
 jobs:
   test:
+    if: github.ref != 'refs/heads/gh-pages'
     runs-on: ubuntu-latest
     name: Test code
 
