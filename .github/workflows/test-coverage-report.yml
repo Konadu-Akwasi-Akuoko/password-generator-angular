@@ -52,3 +52,4 @@ jobs:
         with:
           branch: gh-pages
           folder: coverage/password-generator
+          token: ${{ secrets.GH_PAT }}
