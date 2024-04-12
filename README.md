@@ -2,28 +2,84 @@
 
 [![Angular testing and build](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml/badge.svg)](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+## Table Of Contents
 
-## Development server
+1. [Introduction](#introduction)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Credits](#credits)
+6. [Contributing](#contributing)
+7. [Testing](#testing)
+8. [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Introduction
 
-## Code scaffolding
+This is a simple password generator application built using Angular. The application generates a random password based on the user's input. The user can specify the length of the password and the characters to include in the password.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies
 
-## Build
+The application was built using the following technologies:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular
+- TypeScript
+- HTML
+- CSS
 
-## Running unit tests
+## Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To install the application, follow the steps below:
 
-## Running end-to-end tests
+1. Clone the repository using the command `git clone https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular.git`
+2. Change into the project directory using the command `cd password-generator-angular`
+3. Install the dependencies using the command `pnpm install`
+4. Start the application using the command `ng serve`
+5. Open your browser and navigate to `http://localhost:4200`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Usage
 
-## Further help
+To use the application, follow the steps below:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Select the length of the password you want to generate
+2. Check the checkboxes for the characters you want to include in the password
+3. Click the `Generate Password` button to generate the password
+4. Click the `Copy Password` button to copy the generated password to the clipboard
+
+## Credits
+
+Most algorithms used to generate the password and check the strength of the password were adapted from the following sources:
+
+- [Password Generator Algorithm](https://stackoverflow.com/a/26528271/13107427): I adapted this algorithm on StackOverflow to generate the password, and it relies on the `crypto` module in browsers, as it is more secure than using `Math.random()` that most people use. Thanks to [saaj](https://stackoverflow.com/users/2072035/saaj) for the algorithm.
+- [Password Strength Algorithm](https://github.com/zxcvbn-ts/zxcvbn): I used the zxcvbn implementation to check the strength of the password. The zxcvbn library is a password strength estimator that uses pattern matching and conservative estimation to provide a strength score for the password ([For more information check this site](https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler)). Teh zxvbn library was created by Dropbox and is available on [GitHub](https://github.com/dropbox/zxcvbn). And that is what they use to check the strength of their passwords. I specifically used a fork of their project that was written in [TypeScript](https://github.com/zxcvbn-ts/zxcvbn).
+
+## Contributing
+
+To contribute to the project, follow the steps below:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature`)
+3. Make the appropriate changes in the files
+4. Add changes to reflect the changes made in the project (`git add .`)
+5. Commit your changes (`git commit -m 'feature'`)
+6. Push to the branch (`git push origin feature`)
+7. Create a Pull Request
+
+## Testing
+
+All tests in this application was written using the Jasmine testing framework.
+
+To test the application, run the following command:
+
+```bash
+ng test
+```
+
+ if it is in a CI environment run:
+
+ ```bash
+ng test --no-watch --no-progress --browsers=ChromeHeadless
+```
+
+## License
+
+The project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more details.
