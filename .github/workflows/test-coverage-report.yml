@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test code
+    name: Generate and deploy coverage report
 
     steps:
       - name: git-checkout
