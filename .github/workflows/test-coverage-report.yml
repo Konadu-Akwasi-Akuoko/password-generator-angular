@@ -1,0 +1,39 @@
+name: Create a test coverage report
+on:
+  push:
+    branches:
+      - "*"
+      - "*/*"
+      - "**"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test code
+
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v3
+
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: pnpm-install-deps
+        run: pnpm install
+
+      - name: pnpm-test-angular
+        run: pnpm run test:ci
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: coverage/password-generator
