@@ -1,10 +1,12 @@
 <div
-  class="py-5 px-8 bg-very-dark-grey mb-8 flex flex-row justify-between items-center"
+  class="py-5 px-4 md:px-8 bg-very-dark-grey mb-8 flex flex-row justify-between items-center"
 >
   <p class="body text-grey">{{ "STRENGTH" | uppercase }}</p>
-  <div class="flex flex-row gap-4">
+  <div class="flex flex-row gap-4 items-center">
     @switch (passwordStrength) { @case (1) {
-    <p class="heading-medium">{{ "TOO WEAK" | uppercase }}</p>
+    <p class="text-base md:text-2xl font-bold ">
+      {{ "TOO WEAK" | uppercase }}
+    </p>
     <div class="flex flex-row gap-2">
       <div class="w-[10px] h-7 bg-red"></div>
       <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
@@ -12,7 +14,7 @@
       <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
     </div>
     } @case (2) {
-    <p class="heading-medium">{{ "WEAK" | uppercase }}</p>
+    <p class="text-base md:text-2xl font-bold">{{ "WEAK" | uppercase }}</p>
     <div class="flex flex-row gap-2">
       <div class="w-[10px] h-7 bg-orange"></div>
       <div class="w-[10px] h-7 bg-orange"></div>
@@ -20,7 +22,9 @@
       <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
     </div>
     } @case (3) {
-    <p class="heading-medium">{{ "MEDIUM" | uppercase }}</p>
+    <p class="text-base md:text-2xl font-bold">
+      {{ "MEDIUM" | uppercase }}
+    </p>
     <div class="flex flex-row gap-2">
       <div class="w-[10px] h-7 bg-yellow"></div>
       <div class="w-[10px] h-7 bg-yellow"></div>
@@ -28,7 +32,9 @@
       <div class="w-[10px] h-7 border-2 border-almost-white bg-inherit"></div>
     </div>
     } @case (4) {
-    <p class="heading-medium">{{ "STRONG" | uppercase }}</p>
+    <p class="text-base md:text-2xl font-bold">
+      {{ "STRONG" | uppercase }}
+    </p>
     <div class="flex flex-row gap-2">
       <div class="w-[10px] h-7 bg-neon-green"></div>
       <div class="w-[10px] h-7 bg-neon-green"></div>
