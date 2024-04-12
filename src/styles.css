@@ -48,8 +48,8 @@ html {
 
 .heading-large {
   @apply font-jetbrains-bold font-bold;
-  font-size: 2rem;
-  line-height: 2.6875rem;
+  font-size: 1.5rem;
+  line-height: 1.9375rem;
 }
 
 .heading-medium {
@@ -60,6 +60,28 @@ html {
 
 .body {
   @apply font-jetbrains-bold font-bold;
-  font-size: 1.125rem;
-  line-height: 1.4375rem;
+  font-size: 1rem;
+  line-height: 1.3125rem;
 }
+
+@media (min-width: 768px) {
+  .heading-large {
+    @apply font-jetbrains-bold font-bold;
+    font-size: 2rem;
+    line-height: 2.6875rem;
+  }
+
+  .heading-medium {
+    @apply font-jetbrains-bold font-bold;
+    font-size: 1.5rem;
+    line-height: 1.9375rem;
+  }
+
+  .body {
+    @apply font-jetbrains-bold font-bold;
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+  }
+}
+
+
