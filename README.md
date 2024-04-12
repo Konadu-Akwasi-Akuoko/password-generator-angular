@@ -9,13 +9,14 @@
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Credits](#credits)
-6. [Contributing](#contributing)
-7. [Testing](#testing)
-8. [License](#license)
+6. [CI/CD](#ci/cd)
+7. [Contributing](#contributing)
+8. [Testing](#testing)
+9. [License](#license)
 
 ## Introduction
 
-This is a simple password generator application built using Angular. The application generates a random password based on the user's input. The user can specify the length of the password and the characters to include in the password.
+This is a simple password generator application built using Angular. The application generates a random password based on the user's input. The user can specify the length of the password and the characters to include in the password. To view the deployed application, go to [password-generator.konadu.dev](https://password-generator.konadu.dev/).
 
 ## Technologies
 
@@ -51,6 +52,17 @@ Most algorithms used to generate the password and check the strength of the pass
 
 - [Password Generator Algorithm](https://stackoverflow.com/a/26528271/13107427): I adapted this algorithm on StackOverflow to generate the password, and it relies on the `crypto` module in browsers, as it is more secure than using `Math.random()` that most people use. Thanks to [saaj](https://stackoverflow.com/users/2072035/saaj) for the algorithm.
 - [Password Strength Algorithm](https://github.com/zxcvbn-ts/zxcvbn): I used the zxcvbn implementation to check the strength of the password. The zxcvbn library is a password strength estimator that uses pattern matching and conservative estimation to provide a strength score for the password ([For more information check this site](https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/wheeler)). Teh zxvbn library was created by Dropbox and is available on [GitHub](https://github.com/dropbox/zxcvbn). And that is what they use to check the strength of their passwords. I specifically used a fork of their project that was written in [TypeScript](https://github.com/zxcvbn-ts/zxcvbn).
+
+## CI/CD
+
+The project uses GitHub Actions for CI/CD. The CI/CD pipeline is defined in the `.github/workflows/angular-test.yml` file. The pipeline runs the following steps:
+
+1. Install the dependencies
+2. Run the tests
+3. Build the application
+4. If there are no errors and not test failing, return a success status
+
+This workflow runs on every push to the repository.
 
 ## Contributing
 
