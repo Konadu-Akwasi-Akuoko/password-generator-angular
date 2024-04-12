@@ -33,5 +33,8 @@ jobs:
       - name: remove old coverage report from ./docs
         run: rm -rf ./docs/*
 
+      - name: create new coverage report directory
+        run: mkdir -p ./docs
+
       - name: copy new coverage report to ./docs
         run: cp -r ./coverage/password-generator/* ./docs
