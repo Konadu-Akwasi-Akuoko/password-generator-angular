@@ -1,6 +1,6 @@
 # PasswordGenerator Using Angular
 
-[![Angular testing and build](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml/badge.svg)](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml)
+[![Angular testing and build](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml/badge.svg)](https://github.com/Konadu-Akwasi-Akuoko/password-generator-angular/actions/workflows/angular-test.yml) ![Static Badge](https://img.shields.io/badge/TestCoverage-report-blue?style=flat&link=https%3A%2F%2Fkonadu-akwasi-akuoko.github.io%2Fpassword-generator-angular%2F)
 
 ## Table Of Contents
 
