@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    if: github.ref != 'refs/heads/gh-pages' && github.event_name != 'push'
+    if: github.ref != 'refs/heads/gh-pages' || github.event_name != 'push'
     runs-on: ubuntu-latest
     name: Generate and deploy coverage report
 
