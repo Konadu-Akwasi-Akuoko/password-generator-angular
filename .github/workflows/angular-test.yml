@@ -4,11 +4,8 @@
 name: Angular testing and build
 on:
   push:
-    branches:
-      - "!gh-pages"
-      - "*"
-      - "*/*"
-      - "**"
+    branches-ignore:
+      - "gh-pages"
 
 jobs:
   test:
