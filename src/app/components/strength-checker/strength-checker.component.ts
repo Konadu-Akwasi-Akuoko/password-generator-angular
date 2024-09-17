@@ -16,6 +16,7 @@ export class StrengthCheckerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.passwordGeneratorService.passwordStrength$.subscribe((value) => {
+      console.log(value);
       this.passwordStrength = value;
     });
   }

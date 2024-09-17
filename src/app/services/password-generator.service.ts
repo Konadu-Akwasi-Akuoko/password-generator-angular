@@ -29,21 +29,36 @@ export class PasswordGeneratorService {
   }
 
   private checkPasswordStrength(password: string) {
-    const options = {
-      translations: zxcvbnEnPackage.translations,
-      graphs: zxcvbnCommonPackage.adjacencyGraphs,
-      dictionary: {
-        ...zxcvbnCommonPackage.dictionary,
-        ...zxcvbnEnPackage.dictionary,
-      },
-    };
-    zxcvbnOptions.setOptions(options);
+    // const options = {
+    //   translations: zxcvbnEnPackage.translations,
+    //   graphs: zxcvbnCommonPackage.adjacencyGraphs,
+    //   dictionary: {
+    //     ...zxcvbnCommonPackage.dictionary,
+    //     ...zxcvbnEnPackage.dictionary,
+    //   },
+    // };
+    // zxcvbnOptions.setOptions(options);
 
-    const passwordCheckResult = zxcvbn(password);
-    const strength = Number(
-      passwordCheckResult.score === 0 ? 1 : passwordCheckResult.score
-    );
-    this.passwordStrength$.next(strength);
+    // const passwordCheckResult = zxcvbn(password);
+    // const strength = Number(
+    //   passwordCheckResult.score === 0 ? 1 : passwordCheckResult.score
+    // );
+    // this.passwordStrength$.next(strength);
+    // Set the password strength based on the length
+    // below 10 is weak
+    // 10-15 is medium
+    // 16 + is strong
+    const length = password.length;
+    console.log(length);
+    if (length < 10) {
+      this.passwordStrength$.next(2);
+    } else if (length >= 10 && length <= 15) {
+      this.passwordStrength$.next(3);
+    } else if (length > 15) {
+      this.passwordStrength$.next(4);
+    } else {
+      this.passwordStrength$.next(1);
+    }
   }
 
   private getRandomByte() {
